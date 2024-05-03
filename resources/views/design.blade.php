@@ -85,12 +85,15 @@
         </div>
     </section>
 
-
+    <script src="{{asset('assets/js/smooth-scroll.polyfills.min.js')}}"></script>
+    <script src="{{asset('assets/js/gumshoe.polyfills.min.js')}}"></script>
+    <script src="{{asset('assets/js/feather.js')}}"></script>
+    <script src="{{asset('assets/js/unicons.js')}}"></script>
     <script src="{{asset('assets/js/app.js')}}"></script>
     <script src="{{asset('plugins/jquery/script.js')}}"></script>
     <script src="{{asset('plugins/bootstrap/script.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{asset('plugins/interactjs/script.js')}}"></script>
+    <script src="{{asset('plugins/html2canvas/script.js')}}"></script>
 
     <script>
         $(document).ready(function() {
