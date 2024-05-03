@@ -48,7 +48,10 @@
 <body>
     @include('layout.navbar')
     <section class="design py-5">
-        <div class="content vh-100 pt-5">
+        <div class="content vh-100 ">
+            <div class="d-flex justify-content-center py-5">
+                <h3>Customize your merch </h3>
+            </div>
             <div class="row w-100 px-3">
                 <div class="col-md-4">
                     <img class="img img-fluid img-clickable" src="{{asset('mockups/tshirt.png')}}" alt="">
@@ -73,7 +76,7 @@
                         <button class="btn btn-primary mt-3" id="orderButton">Order Now</button>
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mt-3 mt-md-0">
                         <div class="design-container w-100 h-100" id="designshirt">
                             <img id="mockupImage" class="img img-fluid">
                             <img id="uploadedImage" src="" alt="Uploaded Image" style="display: none;">
@@ -156,7 +159,7 @@
             makeDraggable(textElement);
 
             // Make the text element resizable
-            makeResizable(textElement);
+            // makeResizable(textElement);
         });
 
         const textElement = document.getElementById('userTextElement');
@@ -197,6 +200,32 @@
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
+            let posX = 0, posY = 0, initialX = 0, initialY = 0;
+            element.addEventListener('touchstart', function(e) {
+        initialX = e.touches[0].clientX - posX;
+        initialY = e.touches[0].clientY - posY;
+        if (e.cancelable) {
+            e.preventDefault();
+        }
+    });
+
+    element.addEventListener('touchmove', function(e) {
+        posX = e.touches[0].clientX - initialX;
+        posY = e.touches[0].clientY - initialY;
+        element.style.top = posY + 'px';
+        element.style.left = posX + 'px';
+        if (e.cancelable) {
+            e.preventDefault();
+        }
+    });
+
+    element.addEventListener('touchend', function(e) {
+        initialX = posX;
+        initialY = posY;
+        if (e.cancelable) {
+            e.preventDefault();
+        }
+    });
         }
 
         function makeResizable(element) {
