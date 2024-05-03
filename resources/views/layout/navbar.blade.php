@@ -22,7 +22,7 @@
                     <a data-scroll href="{{route('contact.index')}}" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a data-scroll href="#blog" class="nav-link">Design Tshirt</a>
+                    <a data-scroll href="{{route('design.index')}}" class="nav-link">Design Tshirt</a>
                 </li>
             </ul>
             <ul class="navbar-nav navbar-center">
@@ -45,7 +45,7 @@
         <div class="modal-content login-page">
             <div class="modal-body">
                 <div class="text-center">
-                    <h3 class="title mb-4">Welcome To Lezir</h3>
+                    <h3 class="title mb-4">Welcome To Vibrant Tees</h3>
                     <h4 class="text-uppercase text-primary"><b>Login</b></h4>
                 </div>
                 <div class="login-form mt-4">
@@ -70,23 +70,6 @@
                                     data-feather="arrow-right-circle"></i></button>
                         </div>
                     </form>
-                    <div class="position-relative text-center mt-4">
-                        <span class="login-border"></span>
-                        <p class="social-login text-muted font-size-17">Social Login</p>
-                    </div>
-                    <div class="text-center">
-                        <ul class="list-inline mt-2 mb-3">
-                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-primary"><i
-                                        class="icon-xs" data-feather="facebook"></i></a></li>
-                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-info"><i
-                                        class="icon-xs" data-feather="twitter"></i></a></li>
-                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-danger"><i
-                                        class="icon-xs" data-feather="instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="login-social-icon icon-success"><i
-                                        class="icon-xs" data-feather="linkedin"></i></a></li>
-                        </ul>
-                        <p class="text-muted mb-0">New User? <a href="#" class="text-primary">Signup</a></p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -100,7 +83,7 @@
         <div class="modal-content login-page">
             <div class="modal-body">
                 <div class="text-center">
-                    <h3 class="title mb-4">Welcome To Lezir</h3>
+                    <h3 class="title mb-4">Welcome To Vibrant Tees</h3>
                     <h4 class="text-uppercase text-primary"><b>Register</b></h4>
                 </div>
                 <div class="login-form mt-4">
@@ -130,22 +113,6 @@
                                     data-feather="arrow-right-circle"></i></button>
                         </div>
                     </form>
-                    <div class="position-relative text-center mt-4">
-                        <span class="login-border"></span>
-                        <p class="social-login text-muted font-size-17">Social Login</p>
-                    </div>
-                    <div class="text-center">
-                        <ul class="list-inline mt-2 mb-3">
-                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-primary"><i
-                                        class="icon-xs" data-feather="facebook"></i></a></li>
-                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-info"><i
-                                        class="icon-xs" data-feather="twitter"></i></a></li>
-                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-danger"><i
-                                        class="icon-xs" data-feather="instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="login-social-icon icon-success"><i
-                                        class="icon-xs" data-feather="linkedin"></i></a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

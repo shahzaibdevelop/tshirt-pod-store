@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('index');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact.index');
+Route::get('/design', [HomeController::class,'design'])->name('design.index');
