@@ -49,7 +49,7 @@
     @include('layout.navbar')
     <section class="design py-5">
         <div class="content vh-100 pt-5">
-            <div class="row w-100">
+            <div class="row w-100 px-3">
                 <div class="col-md-4">
                     <img class="img img-fluid img-clickable" src="{{asset('mockups/tshirt.png')}}" alt="">
                 </div>
