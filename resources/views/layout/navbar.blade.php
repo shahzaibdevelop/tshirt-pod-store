@@ -1,0 +1,153 @@
+ <!--Navbar Start-->
+ <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark" id="navbar">
+    <div class="container">
+        <!-- LOGO -->
+        <a class="navbar-brand logo" href="layout-one-1.html">
+            <img src="{{asset('assets/images/logo-dark.png')}}" alt="" class="logo-dark" height="24" />
+            <img src="{{asset('assets/images/logo-light.png')}}" alt="" class="logo-light" height="24" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="mdi mdi-menu"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mx-auto navbar-center" id="navbar-navlist">
+                <li class="nav-item">
+                    <a data-scroll href="{{route('index')}}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a data-scroll href="{{route('index') . '#about'}}" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a data-scroll href="{{route('contact.index')}}" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a data-scroll href="#blog" class="nav-link">Design Tshirt</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-center">
+                <li class="nav-item">
+                    <a href="#login" class="nav-link" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalCenter">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#login" class="nav-link" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalCenter-1">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+ <!-- login Modal Start -->
+ <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content login-page">
+            <div class="modal-body">
+                <div class="text-center">
+                    <h3 class="title mb-4">Welcome To Lezir</h3>
+                    <h4 class="text-uppercase text-primary"><b>Login</b></h4>
+                </div>
+                <div class="login-form mt-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Username / Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                placeholder="Youremail@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <a href="#" class="float-end text-muted font-size-15">Forgot Password.?</a>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label font-size-15" for="customCheck1">Remember Me</label>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary">Login <i class="icon-size-15 icon ms-1"
+                                    data-feather="arrow-right-circle"></i></button>
+                        </div>
+                    </form>
+                    <div class="position-relative text-center mt-4">
+                        <span class="login-border"></span>
+                        <p class="social-login text-muted font-size-17">Social Login</p>
+                    </div>
+                    <div class="text-center">
+                        <ul class="list-inline mt-2 mb-3">
+                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-primary"><i
+                                        class="icon-xs" data-feather="facebook"></i></a></li>
+                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-info"><i
+                                        class="icon-xs" data-feather="twitter"></i></a></li>
+                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-danger"><i
+                                        class="icon-xs" data-feather="instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="login-social-icon icon-success"><i
+                                        class="icon-xs" data-feather="linkedin"></i></a></li>
+                        </ul>
+                        <p class="text-muted mb-0">New User? <a href="#" class="text-primary">Signup</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- login Modal End -->
+
+<!-- Register Modal Start-->
+<div class="modal fade" id="exampleModalCenter-1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content login-page">
+            <div class="modal-body">
+                <div class="text-center">
+                    <h3 class="title mb-4">Welcome To Lezir</h3>
+                    <h4 class="text-uppercase text-primary"><b>Register</b></h4>
+                </div>
+                <div class="login-form mt-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputUsername">User Name</label>
+                            <input type="text" class="form-control" id="exampleInputUsername"
+                                placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail2">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail2"
+                                placeholder="Youremail@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword2">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword2"
+                                placeholder="Password">
+                        </div>
+                        <a href="#" class="float-end text-muted font-size-15">Forgot Password.?</a>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                            <label class="custom-control-label font-size-15" for="customCheck2">Remember Me</label>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary">Register <i class="icon-size-15 icon ms-1"
+                                    data-feather="arrow-right-circle"></i></button>
+                        </div>
+                    </form>
+                    <div class="position-relative text-center mt-4">
+                        <span class="login-border"></span>
+                        <p class="social-login text-muted font-size-17">Social Login</p>
+                    </div>
+                    <div class="text-center">
+                        <ul class="list-inline mt-2 mb-3">
+                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-primary"><i
+                                        class="icon-xs" data-feather="facebook"></i></a></li>
+                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-info"><i
+                                        class="icon-xs" data-feather="twitter"></i></a></li>
+                            <li class="list-inline-item me-3"><a href="#" class="login-social-icon icon-danger"><i
+                                        class="icon-xs" data-feather="instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="login-social-icon icon-success"><i
+                                        class="icon-xs" data-feather="linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
