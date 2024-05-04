@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap/style.css') }}">
+    <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/style.css') }}">
     <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
@@ -16,6 +19,7 @@
             border-radius: 16px;
         }
 
+
         .design-container {
             position: relative;
             width: 300px;
@@ -25,11 +29,13 @@
             overflow: hidden;
         }
 
+
         .design-container img {
             width: 100%;
             height: auto;
             display: block;
         }
+
 
         #uploadedImage {
             position: absolute;
@@ -38,6 +44,7 @@
             transform: translate(-50%, -50%);
             cursor: move;
         }
+
 
         #userTextElement {
             position: absolute;
@@ -200,7 +207,9 @@
         }
     </style>
 
+
 </head>
+
 
 <body>
     @include('layout.navbar')
@@ -212,12 +221,16 @@
             <div class="row w-100 px-3">
                 <div class="col-md-4">
                     <img class="img img-fluid img-clickable" src="{{ asset('mockups/tshirt.png') }}" alt="">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/tshirt.png') }}" alt="">
                 </div>
                 <div class="col-md-4">
                     <img class="img img-fluid img-clickable" src="{{ asset('mockups/long-sleeve-tshirt.png') }}"
                         alt="">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/long-sleeve-tshirt.png') }}"
+                        alt="">
                 </div>
                 <div class="col-md-4">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/hoodie.png') }}" alt="">
                     <img class="img img-fluid img-clickable" src="{{ asset('mockups/hoodie.png') }}" alt="">
                 </div>
             </div>
@@ -227,6 +240,7 @@
                 <div class="row w-100 pb-5 ">
                     <div class="col-md-6">
                         <label for="uploadInput">Upload Design</label>
+                        <input type="file" class="form-control mb-4 mt-2" name="userDesign" id="uploadInput">
                         <input type="file" class="form-control mb-4 mt-2" name="userDesign" id="uploadInput">
                         <label for="userText ">Write Text</label>
                         <input type="text" class="form-control mt-2" id="userText"
@@ -371,6 +385,7 @@
         });
     </script>
     <script>
+    <script>
         document.getElementById('uploadInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file && file.type.startsWith('image')) {
@@ -432,6 +447,10 @@
                 pos2 = 0,
                 pos3 = 0,
                 pos4 = 0;
+            let pos1 = 0,
+                pos2 = 0,
+                pos3 = 0,
+                pos4 = 0;
             element.onmousedown = dragMouseDown;
 
             function dragMouseDown(e) {
@@ -462,6 +481,10 @@
                 posY = 0,
                 initialX = 0,
                 initialY = 0;
+            let posX = 0,
+                posY = 0,
+                initialX = 0,
+                initialY = 0;
             element.addEventListener('touchstart', function(e) {
                 initialX = e.touches[0].clientX - posX;
                 initialY = e.touches[0].clientY - posY;
@@ -469,7 +492,22 @@
                     e.preventDefault();
                 }
             });
+                initialX = e.touches[0].clientX - posX;
+                initialY = e.touches[0].clientY - posY;
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
 
+            element.addEventListener('touchmove', function(e) {
+                posX = e.touches[0].clientX - initialX;
+                posY = e.touches[0].clientY - initialY;
+                element.style.top = posY + 'px';
+                element.style.left = posX + 'px';
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
             element.addEventListener('touchmove', function(e) {
                 posX = e.touches[0].clientX - initialX;
                 posY = e.touches[0].clientY - initialY;
@@ -487,6 +525,13 @@
                     e.preventDefault();
                 }
             });
+            element.addEventListener('touchend', function(e) {
+                initialX = posX;
+                initialY = posY;
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
         }
 
         function makeResizable(element) {
@@ -497,7 +542,14 @@
                     bottom: true,
                     top: true
                 },
+                edges: {
+                    left: true,
+                    right: true,
+                    bottom: true,
+                    top: true
+                },
                 listeners: {
+                    move: function(event) {
                     move: function(event) {
                         let target = event.target;
                         target.style.width = event.rect.width + 'px';
@@ -507,6 +559,15 @@
             });
         }
     </script>
+    {{-- @if (request()->has('modal') && request()->get('modal') == 'open')
+        <script>
+            $(document).ready(function() {
+                $('#exampleModalCenter').modal('show');
+            });
+        </script>
+    @endif --}}
 </body>
 
+
 </html>
+
