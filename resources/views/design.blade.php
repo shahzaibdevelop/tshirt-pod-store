@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{{asset('plugins/bootstrap/style.css')}}">
-    <link href="{{asset('assets/css/style.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap/style.css') }}">
+    <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Jaro:opsz@6..72&family=Pacifico&family=Permanent+Marker&display=swap');
+
         .border-blue {
             border: 2px solid #4e42d9;
             border-radius: 16px;
         }
+
         .design-container {
             position: relative;
             width: 300px;
@@ -20,11 +24,13 @@
             margin-bottom: 20px;
             overflow: hidden;
         }
+
         .design-container img {
             width: 100%;
             height: auto;
             display: block;
         }
+
         #uploadedImage {
             position: absolute;
             top: 50%;
@@ -32,6 +38,7 @@
             transform: translate(-50%, -50%);
             cursor: move;
         }
+
         #userTextElement {
             position: absolute;
             top: 50%;
@@ -42,9 +49,51 @@
             user-select: none;
             cursor: move;
         }
+
+        @font-face {
+            font-family: 'Helvetica';
+            src: url("{{asset('fonts/Helvetica.ttf')}}") format('truetype');
+        }
+
+
+        .font1 {
+            font-family: "Permanent Marker", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .font2 {
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .font3 {
+            font-family: "Dancing Script", cursive;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .font4 {
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .font5 {
+            font-family: "Jaro", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .font6{
+            font-family: 'Helvetica';
+        }
     </style>
-    
+
 </head>
+
 <body>
     @include('layout.navbar')
     <section class="design py-5">
@@ -54,27 +103,51 @@
             </div>
             <div class="row w-100 px-3">
                 <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{asset('mockups/tshirt.png')}}" alt="">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/tshirt.png') }}" alt="">
                 </div>
                 <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{asset('mockups/long-sleeve-tshirt.png')}}" alt="">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/long-sleeve-tshirt.png') }}"
+                        alt="">
                 </div>
                 <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{asset('mockups/hoodie.png')}}" alt="">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/hoodie.png') }}" alt="">
                 </div>
             </div>
             <hr>
             {{-- Custom  --}}
             <div class="edit-shirt px-4">
-                <div class="row w-100">
+                <div class="row w-100 pb-5 ">
                     <div class="col-md-6">
                         <label for="uploadInput">Upload Design</label>
-                        <input type="file" class="form-control mb-4 mt-2"  name="userDesign" id="uploadInput">
+                        <input type="file" class="form-control mb-4 mt-2" name="userDesign" id="uploadInput">
                         <label for="userText ">Write Text</label>
-                        <input type="text" class="form-control mt-2" id="userText" placeholder="Enter your text here">
+                        <input type="text" class="form-control mt-2" id="userText"
+                            placeholder="Enter your text here">
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="userText" class="mb-2">Select Text Font</label>
+                                <select onchange="changeTextFont()" id="selectTextFont" class="form-control">
+                                    <option selected disabled>Select a Font</option>
+                                    <option value="font1" class="font1">Demo Font</option>
+                                    <option value="font2" class="font2">Demo Font</option>
+                                    <option value="font3" class="font3">Demo Font</option>
+                                    <option value="font4" class="font4">Demo Font</option>
+                                    <option value="font5" class="font5">Demo Font</option>
+                                    <option value="font6" class="font6">Demo Font</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 ">
+                                <label for="userText" class="mb-2">Select Text Color</label>
+                                <input type="color" oninput="changeTextColor()" id="changeTextColor"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="d-flex  gap-2 mt-3">
+                            <button onclick="increaseFontSize()" class="btn btn-success w-100">Font size +</button>
+                            <button onclick="decreaseFontSize()" class="btn btn-danger w-100">Font size -</button>
+                        </div>
                         <img id="finalDesign" hidden>
                         <button class="btn btn-primary mt-3" id="orderButton">Order Now</button>
-
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">
                         <div class="design-container w-100 h-100" id="designshirt">
@@ -88,15 +161,47 @@
         </div>
     </section>
 
-    <script src="{{asset('assets/js/smooth-scroll.polyfills.min.js')}}"></script>
-    <script src="{{asset('assets/js/gumshoe.polyfills.min.js')}}"></script>
-    <script src="{{asset('assets/js/feather.js')}}"></script>
-    <script src="{{asset('assets/js/unicons.js')}}"></script>
-    <script src="{{asset('assets/js/app.js')}}"></script>
-    <script src="{{asset('plugins/jquery/script.js')}}"></script>
-    <script src="{{asset('plugins/bootstrap/script.js')}}"></script>
-    <script src="{{asset('plugins/interactjs/script.js')}}"></script>
-    <script src="{{asset('plugins/html2canvas/script.js')}}"></script>
+    <script src="{{ asset('assets/js/smooth-scroll.polyfills.min.js') }}"></script>
+    <script src="{{ asset('assets/js/gumshoe.polyfills.min.js') }}"></script>
+    <script src="{{ asset('assets/js/feather.js') }}"></script>
+    <script src="{{ asset('assets/js/unicons.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/script.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/script.js') }}"></script>
+    <script src="{{ asset('plugins/interactjs/script.js') }}"></script>
+    <script src="{{ asset('plugins/html2canvas/script.js') }}"></script>
+    <script>
+        function changeTextColor() {
+            var userTextElement = $('#userTextElement');
+            userTextElement.css('color', $('#changeTextColor').val());
+        }
+    </script>
+    <script>
+        function increaseFontSize() {
+            var userTextElement = $('#userTextElement');
+            var currentFontSize = parseInt(userTextElement.css('font-size'));
+            var newFontSize = currentFontSize + 2;
+            userTextElement.css('font-size', newFontSize + 'px');
+        }
+
+        function decreaseFontSize() {
+            var userTextElement = $('#userTextElement');
+            var currentFontSize = parseInt(userTextElement.css('font-size'));
+            var newFontSize = currentFontSize - 2;
+            userTextElement.css('font-size', newFontSize + 'px');
+        }
+    </script>
+    <script>
+        function changeTextFont() {
+            let selectedFont = $('#selectTextFont').val();
+            $('#userTextElement').removeClass();
+            $('#userTextElement').addClass(selectedFont);
+            $('#selectTextFont').removeClass();
+            $('#selectTextFont').addClass('form-control');
+            $('#selectTextFont').addClass(selectedFont);
+
+        }
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -108,15 +213,15 @@
         });
     </script>
     <script>
-         $('#orderButton').click(function() {
-                var node = document.getElementById('designshirt');
-                html2canvas(node).then(function(canvas) {
-                    var imageData = canvas.toDataURL('image/png');
-                    $("#finalDesign").attr('src', imageData);
-                });
+        $('#orderButton').click(function() {
+            var node = document.getElementById('designshirt');
+            html2canvas(node).then(function(canvas) {
+                var imageData = canvas.toDataURL('image/png');
+                $("#finalDesign").attr('src', imageData);
             });
+        });
     </script>
-      <script>
+    <script>
         document.getElementById('uploadInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file && file.type.startsWith('image')) {
@@ -131,7 +236,8 @@
                     // Calculate new size based on container size
                     const containerWidth = document.querySelector('.design-container').clientWidth;
                     const containerHeight = document.querySelector('.design-container').clientHeight;
-                    const newSize = Math.min(containerWidth, containerHeight) * 0.2; // 20% of the smaller dimension
+                    const newSize = Math.min(containerWidth, containerHeight) *
+                        0.2; // 20% of the smaller dimension
 
                     // Set uploaded image size
                     uploadedImg.style.width = newSize + 'px';
@@ -173,7 +279,10 @@
         textElement.style.cursor = 'move';
 
         function makeDraggable(element) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            let pos1 = 0,
+                pos2 = 0,
+                pos3 = 0,
+                pos4 = 0;
             element.onmousedown = dragMouseDown;
 
             function dragMouseDown(e) {
@@ -200,39 +309,47 @@
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
-            let posX = 0, posY = 0, initialX = 0, initialY = 0;
+            let posX = 0,
+                posY = 0,
+                initialX = 0,
+                initialY = 0;
             element.addEventListener('touchstart', function(e) {
-        initialX = e.touches[0].clientX - posX;
-        initialY = e.touches[0].clientY - posY;
-        if (e.cancelable) {
-            e.preventDefault();
-        }
-    });
+                initialX = e.touches[0].clientX - posX;
+                initialY = e.touches[0].clientY - posY;
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
 
-    element.addEventListener('touchmove', function(e) {
-        posX = e.touches[0].clientX - initialX;
-        posY = e.touches[0].clientY - initialY;
-        element.style.top = posY + 'px';
-        element.style.left = posX + 'px';
-        if (e.cancelable) {
-            e.preventDefault();
-        }
-    });
+            element.addEventListener('touchmove', function(e) {
+                posX = e.touches[0].clientX - initialX;
+                posY = e.touches[0].clientY - initialY;
+                element.style.top = posY + 'px';
+                element.style.left = posX + 'px';
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
 
-    element.addEventListener('touchend', function(e) {
-        initialX = posX;
-        initialY = posY;
-        if (e.cancelable) {
-            e.preventDefault();
-        }
-    });
+            element.addEventListener('touchend', function(e) {
+                initialX = posX;
+                initialY = posY;
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
         }
 
         function makeResizable(element) {
             interact(element).resizable({
-                edges: { left: true, right: true, bottom: true, top: true },
+                edges: {
+                    left: true,
+                    right: true,
+                    bottom: true,
+                    top: true
+                },
                 listeners: {
-                    move: function (event) {
+                    move: function(event) {
                         let target = event.target;
                         target.style.width = event.rect.width + 'px';
                         target.style.height = event.rect.height + 'px';
@@ -242,4 +359,5 @@
         }
     </script>
 </body>
+
 </html>
