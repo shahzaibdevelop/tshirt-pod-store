@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\CustomAuth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::post('/register',[AuthController::class, 'register'])->name('register');
+Route::post('/login',[AuthController::class, 'login'])->name('login');
 Route::get('/', [HomeController::class,'index'])->name('index');
+Route::get('alert', [HomeController::class,'alert'])->name('alert');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact.index');
-Route::get('/design', [HomeController::class,'design'])->name('design.index');
+
+
+
+Route::middleware([CustomAuth::class])->group(function(){
+    Route::get('/design', [HomeController::class,'design'])->name('design.index');
+    Route::get('/logout', [AuthController::class,'logout'])->name('logout');
+});

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{{asset('plugins/bootstrap/style.css')}}">
-    <link href="{{asset('assets/css/style.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap/style.css') }}">
+    <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
         .border-blue {
             border: 2px solid #4e42d9;
             border-radius: 16px;
         }
+
         .design-container {
             position: relative;
             width: 300px;
@@ -20,11 +22,13 @@
             margin-bottom: 20px;
             overflow: hidden;
         }
+
         .design-container img {
             width: 100%;
             height: auto;
             display: block;
         }
+
         #uploadedImage {
             position: absolute;
             top: 50%;
@@ -32,6 +36,7 @@
             transform: translate(-50%, -50%);
             cursor: move;
         }
+
         #userTextElement {
             position: absolute;
             top: 50%;
@@ -43,8 +48,9 @@
             cursor: move;
         }
     </style>
-    
+
 </head>
+
 <body>
     @include('layout.navbar')
     <section class="design py-5">
@@ -54,13 +60,14 @@
             </div>
             <div class="row w-100 px-3">
                 <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{asset('mockups/tshirt.png')}}" alt="">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/tshirt.png') }}" alt="">
                 </div>
                 <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{asset('mockups/long-sleeve-tshirt.png')}}" alt="">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/long-sleeve-tshirt.png') }}"
+                        alt="">
                 </div>
                 <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{asset('mockups/hoodie.png')}}" alt="">
+                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/hoodie.png') }}" alt="">
                 </div>
             </div>
             <hr>
@@ -69,9 +76,10 @@
                 <div class="row w-100">
                     <div class="col-md-6">
                         <label for="uploadInput">Upload Design</label>
-                        <input type="file" class="form-control mb-4 mt-2"  name="userDesign" id="uploadInput">
+                        <input type="file" class="form-control mb-4 mt-2" name="userDesign" id="uploadInput">
                         <label for="userText ">Write Text</label>
-                        <input type="text" class="form-control mt-2" id="userText" placeholder="Enter your text here">
+                        <input type="text" class="form-control mt-2" id="userText"
+                            placeholder="Enter your text here">
                         <img id="finalDesign" hidden>
                         <button class="btn btn-primary mt-3" id="orderButton">Order Now</button>
 
@@ -88,15 +96,15 @@
         </div>
     </section>
 
-    <script src="{{asset('assets/js/smooth-scroll.polyfills.min.js')}}"></script>
-    <script src="{{asset('assets/js/gumshoe.polyfills.min.js')}}"></script>
-    <script src="{{asset('assets/js/feather.js')}}"></script>
-    <script src="{{asset('assets/js/unicons.js')}}"></script>
-    <script src="{{asset('assets/js/app.js')}}"></script>
-    <script src="{{asset('plugins/jquery/script.js')}}"></script>
-    <script src="{{asset('plugins/bootstrap/script.js')}}"></script>
-    <script src="{{asset('plugins/interactjs/script.js')}}"></script>
-    <script src="{{asset('plugins/html2canvas/script.js')}}"></script>
+    <script src="{{ asset('assets/js/smooth-scroll.polyfills.min.js') }}"></script>
+    <script src="{{ asset('assets/js/gumshoe.polyfills.min.js') }}"></script>
+    <script src="{{ asset('assets/js/feather.js') }}"></script>
+    <script src="{{ asset('assets/js/unicons.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/script.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/script.js') }}"></script>
+    <script src="{{ asset('plugins/interactjs/script.js') }}"></script>
+    <script src="{{ asset('plugins/html2canvas/script.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -108,15 +116,15 @@
         });
     </script>
     <script>
-         $('#orderButton').click(function() {
-                var node = document.getElementById('designshirt');
-                html2canvas(node).then(function(canvas) {
-                    var imageData = canvas.toDataURL('image/png');
-                    $("#finalDesign").attr('src', imageData);
-                });
+        $('#orderButton').click(function() {
+            var node = document.getElementById('designshirt');
+            html2canvas(node).then(function(canvas) {
+                var imageData = canvas.toDataURL('image/png');
+                $("#finalDesign").attr('src', imageData);
             });
+        });
     </script>
-      <script>
+    <script>
         document.getElementById('uploadInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file && file.type.startsWith('image')) {
@@ -131,7 +139,8 @@
                     // Calculate new size based on container size
                     const containerWidth = document.querySelector('.design-container').clientWidth;
                     const containerHeight = document.querySelector('.design-container').clientHeight;
-                    const newSize = Math.min(containerWidth, containerHeight) * 0.2; // 20% of the smaller dimension
+                    const newSize = Math.min(containerWidth, containerHeight) *
+                    0.2; // 20% of the smaller dimension
 
                     // Set uploaded image size
                     uploadedImg.style.width = newSize + 'px';
@@ -173,7 +182,10 @@
         textElement.style.cursor = 'move';
 
         function makeDraggable(element) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            let pos1 = 0,
+                pos2 = 0,
+                pos3 = 0,
+                pos4 = 0;
             element.onmousedown = dragMouseDown;
 
             function dragMouseDown(e) {
@@ -200,39 +212,47 @@
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
-            let posX = 0, posY = 0, initialX = 0, initialY = 0;
+            let posX = 0,
+                posY = 0,
+                initialX = 0,
+                initialY = 0;
             element.addEventListener('touchstart', function(e) {
-        initialX = e.touches[0].clientX - posX;
-        initialY = e.touches[0].clientY - posY;
-        if (e.cancelable) {
-            e.preventDefault();
-        }
-    });
+                initialX = e.touches[0].clientX - posX;
+                initialY = e.touches[0].clientY - posY;
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
 
-    element.addEventListener('touchmove', function(e) {
-        posX = e.touches[0].clientX - initialX;
-        posY = e.touches[0].clientY - initialY;
-        element.style.top = posY + 'px';
-        element.style.left = posX + 'px';
-        if (e.cancelable) {
-            e.preventDefault();
-        }
-    });
+            element.addEventListener('touchmove', function(e) {
+                posX = e.touches[0].clientX - initialX;
+                posY = e.touches[0].clientY - initialY;
+                element.style.top = posY + 'px';
+                element.style.left = posX + 'px';
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
 
-    element.addEventListener('touchend', function(e) {
-        initialX = posX;
-        initialY = posY;
-        if (e.cancelable) {
-            e.preventDefault();
-        }
-    });
+            element.addEventListener('touchend', function(e) {
+                initialX = posX;
+                initialY = posY;
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+            });
         }
 
         function makeResizable(element) {
             interact(element).resizable({
-                edges: { left: true, right: true, bottom: true, top: true },
+                edges: {
+                    left: true,
+                    right: true,
+                    bottom: true,
+                    top: true
+                },
                 listeners: {
-                    move: function (event) {
+                    move: function(event) {
                         let target = event.target;
                         target.style.width = event.rect.width + 'px';
                         target.style.height = event.rect.height + 'px';
@@ -241,5 +261,13 @@
             });
         }
     </script>
+    {{-- @if (request()->has('modal') && request()->get('modal') == 'open')
+        <script>
+            $(document).ready(function() {
+                $('#exampleModalCenter').modal('show');
+            });
+        </script>
+    @endif --}}
 </body>
+
 </html>

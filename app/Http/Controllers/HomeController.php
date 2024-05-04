@@ -15,4 +15,9 @@ class HomeController extends Controller
     public function design(){
         return view('design');
     }
+    public function alert()
+    {
+        notyf()->addError('Login Required!');
+        return back();
+    }
 }

@@ -8,7 +8,11 @@
                 <h1 class="hero-3-title text-shadow mb-0">POD Tshirts Store</h1>
                 <p class="text-muted mt-4 mb-0">Customize your own Tshirts by adding your custom design and texts on your Tshirts</p>
                 <div class="mt-4 mb-5 pb-5">
-                    <a href="#" class="btn btn-primary text-uppercase">Design Now</a>
+                    @auth
+                        <a href="{{ route('design.index') }}" class="btn btn-primary text-uppercase">Design Now</a>
+                    @else
+                        <a href="{{route('alert')}}" class="btn btn-primary text-uppercase" >Design Now</a>
+                    @endauth
                 </div>
                 <!-- Modal -->
                 <div class="modal fade bd-example-modal-lg" id="watchvideomodal" data-keyboard="false" tabindex="-1"
@@ -118,3 +122,4 @@
 </section>
 <!-- Features End -->
 @endsection
+
