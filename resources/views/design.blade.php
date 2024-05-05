@@ -224,29 +224,38 @@
             <hr>
             {{-- Custom  --}}
             <div class="edit-shirt px-4">
+                <form action="{{route('save-design')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                 <div class="row w-100 pb-5 ">
                     <div class="col-md-6">
                         <label for="uploadInput">Upload Design</label>
-                        <input type="file" class="form-control mb-4 mt-2" name="userDesign" id="uploadInput">
+                        <input type="file" class="form-control mb-4 mt-2" required name="shirt_logo" id="uploadInput">
                         <label for="userText ">Write Text</label>
-                        <input type="text" class="form-control mt-2" id="userText"
+                        <input type="text" class="form-control mt-2" required name="shirt_text" id="userText"
                             placeholder="Enter your text here">
                         <div class="row mt-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="userText" class="mb-2">Select Text Font</label>
-                                <select onchange="changeTextFont()" id="selectTextFont" class="form-control">
+                                <select onchange="changeTextFont()" id="selectTextFont" name="font_name" class="form-control">
                                     <option selected disabled>Select a Font</option>
-                                    <option value="font1" class="font1">Demo Font</option>
-                                    <option value="font2" class="font2">Demo Font</option>
-                                    <option value="font3" class="font3">Demo Font</option>
-                                    <option value="font4" class="font4">Demo Font</option>
-                                    <option value="font5" class="font5">Demo Font</option>
-                                    <option value="font6" class="font6">Demo Font</option>
+                                    <option value="Permanent Marker" class="font1">Permanent Marker</option>
+                                    <option value="Pacifico" class="font2">Pacifico</option>
+                                    <option value="Dancing Script" class="font3">Dancing Script</option>
+                                    <option value="Bebas Neue" class="font4">Bebas Neue</option>
+                                    <option value="Jaro" class="font5">Jaro
+
+                                    </option>
+                                    <option value="Helvetica" class="font6">Helvetica</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 ">
+                            <div class="col-md-4 ">
                                 <label for="userText" class="mb-2">Select Text Color</label>
-                                <input type="color" oninput="changeTextColor()" id="changeTextColor"
+                                <input type="color" name="text_color" oninput="changeTextColor()" id="changeTextColor"
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-4 ">
+                                <label for="userShirt" class="mb-2">Select Shirt Color</label>
+                                <input type="color" name="shirt_color" oninput="changeShirtColor()" id="changeShirtColor"
                                     class="form-control">
                             </div>
                         </div>
@@ -258,45 +267,51 @@
                         <div class="d-flex">
                             <div class="radio-inputs d-flex flex-wrap">
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="Small">
                                         <span class="radio-tile px-4 py-2">
                                             <span class="radio-label">Small</span>
                                         </span>
                                 </label>
                                 <label>
-                                    <input checked="" class="radio-input" type="radio" name="size">
+                                    <input checked="" class="radio-input" type="radio" name="size" value="Medium">
                                     <span class="radio-tile px-4 py-2">
                                         <span class="radio-label">Medium</span>
                                     </span>
                                 </label>
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="Large">
                                     <span class="radio-tile px-4 py-2">
                                         <span class="radio-label">Large</span>
                                     </span>
                                 </label>
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="XL">
                                     <span class="radio-tile px-4 py-2">
                                         <span class="radio-label">XL</span>
                                     </span>
                                 </label>
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="XXL">
                                     <span class="radio-tile px-4 py-2">
                                         <span class="radio-label">XXL</span>
                                     </span>
                                 </label>
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="XXXL">
                                     <span class="radio-tile px-4 py-2">
-                                        <span class="radio-label">XXL</span>
+                                        <span class="radio-label">XXXL</span>
                                     </span>
                                 </label>
                         </div>
                         </div>
-                        <input type="file" id="finalDesign" hidden>
-                        <button class="btn btn-primary mt-3" id="orderButton">Order Now</button>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" required type="checkbox" id="generateImageCheckbox">
+                            <label class="form-check-label" for="generateImageCheckbox">
+                                Design is Final?
+                            </label>
+                        </div>
+                        <input type="text" id="finalDesign" name="finalDesign" hidden>
+                        <button type="submit" class="btn btn-primary mt-3">Order Now</button>
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">
                         <div class="design-container w-100 h-100" id="designshirt">
@@ -306,6 +321,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     </section>
@@ -321,6 +337,12 @@
     <script src="{{ asset('plugins/html2canvas/script.js') }}"></script>
     <script>
         function changeTextColor() {
+            var userTextElement = $('#userTextElement');
+            userTextElement.css('color', $('#changeTextColor').val());
+        }
+    </script>
+    <script>
+        function changeShirtColor() {
             var userTextElement = $('#userTextElement');
             userTextElement.css('color', $('#changeTextColor').val());
         }
@@ -361,15 +383,38 @@
             });
         });
     </script>
-    <script>
+    {{-- <script>
         $('#orderButton').click(function() {
+            var node = document.getElementById('designshirt');
+            html2canvas(node).then(function(canvas) {
+                var imageData = canvas.toDataURL('image/png');
+                console.log(imageData);
+                $("#finalDesign").attr('value', imageData);
+            });
+        });
+    </script> --}}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#generateImageCheckbox').change(function() {
+            if(this.checked) {
+                generateImage();
+            }
+        });
+
+        function generateImage() {
             var node = document.getElementById('designshirt');
             html2canvas(node).then(function(canvas) {
                 var imageData = canvas.toDataURL('image/png');
                 $("#finalDesign").attr('value', imageData);
             });
-        });
-    </script>
+        }
+    });
+</script>
+
+
+
     <script>
         document.getElementById('uploadInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
