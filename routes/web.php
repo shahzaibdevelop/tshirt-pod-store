@@ -26,6 +26,6 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact.index'
 Route::middleware([CustomAuth::class])->group(function () {
     Route::get('/design', [HomeController::class, 'design'])->name('design.index');
     Route::post('/save-design', [HomeController::class, 'storeDesign'])->name('save-design');
-
+    Route::get('/orders',[HomeController::class, 'orders'])->name('orders.index');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

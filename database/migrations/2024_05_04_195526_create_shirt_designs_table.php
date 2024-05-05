@@ -15,16 +15,19 @@ return new class extends Migration
     {
         Schema::create('shirt_designs', function (Blueprint $table) {
             $table->id();
-            $table->string('shirt_logo');
-            $table->string('shirt_text');
-            $table->string('text_font');
-            $table->string('text_color');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('shirt_logo')->nullable();
+            $table->string('shirt_text')->nullable();
+            $table->string('text_font')->nullable();
+            $table->string('text_color')->nullable();
             $table->string('shirt_color');
             $table->string('shirt_size');
             $table->string('final_design');
-
-
-
+            $table->string('name');
+            $table->string('address');
+            $table->string('phone');
+            $table->integer('status')->comment('0=Ordered,1=Shipping,2=Delivered')->default(0);
             $table->timestamps();
         });
     }

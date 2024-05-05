@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Design</title>
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/style.css') }}">
     <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
@@ -229,9 +229,9 @@
                 <div class="row w-100 pb-5 ">
                     <div class="col-md-6">
                         <label for="uploadInput">Upload Design</label>
-                        <input type="file" class="form-control mb-4 mt-2" required name="shirt_logo" id="uploadInput">
+                        <input type="file" class="form-control mb-4 mt-2"  name="shirt_logo" id="uploadInput">
                         <label for="userText ">Write Text</label>
-                        <input type="text" class="form-control mt-2" required name="shirt_text" id="userText"
+                        <input type="text" class="form-control mt-2"  name="shirt_text" id="userText"
                             placeholder="Enter your text here">
                         <div class="row mt-3">
                             <div class="col-md-4">
@@ -253,7 +253,7 @@
                             </div>
                             <div class="col-md-4 ">
                                 <label for="userShirt" class="mb-2">Select Shirt Color</label>
-                                <input type="color" name="shirt_color" oninput="changeShirtColor()" id="changeShirtColor"
+                                <input   value="#ffffff"  type="color" name="shirt_color" oninput="changeShirtColor()" id="changeShirtColor"
                                     class="form-control">
                             </div>
                         </div>
@@ -305,10 +305,23 @@
                         <div class="form-check mt-3">
                             <input class="form-check-input" required type="checkbox" id="generateImageCheckbox">
                             <label class="form-check-label" for="generateImageCheckbox">
-                                Design is Final?
+                                Design is Final ?
                             </label>
                         </div>
                         <input type="text" id="finalDesign" name="finalDesign" hidden>
+                        <div class="row my-3">
+                            <div class="col-md-6">
+                                <input type="text" required name="name" class="form-control" placeholder="Enter Name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" required name="phone" class="form-control" placeholder="Enter Phone Number">
+                            </div>
+                        </div>
+                        <div class="rownmt-3">
+                            <div class="col-12">
+                                <textarea name="address" required class="form-control" placeholder="Enter Address" cols="30" rows="4"></textarea>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary mt-3">Order Now</button>
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">

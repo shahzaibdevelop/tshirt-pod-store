@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ShirtDesign;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,10 @@ class HomeController extends Controller
             $img->move(public_path("shirt-logo"), $new_img);
             $store->shirt_logo  = $new_img;
         }
+        $store->user_id= Auth::id();
+        $store->name= $request->name;
+        $store->phone= $request->phone;
+        $store->address= $request->address;
         $store->shirt_text= $request->shirt_text;
         $store->text_font= $request->font_name;
         $store->text_color= $request->text_color;
@@ -65,5 +70,9 @@ class HomeController extends Controller
         }
 
 
+    }
+    public function orders(){
+        $orders= ShirtDesign::where('user_id', Auth::id())->orderBy('created_at','desc')->get();
+        return view('orders', compact('orders'));
     }
 }

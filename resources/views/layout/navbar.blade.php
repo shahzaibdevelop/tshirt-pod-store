@@ -25,6 +25,9 @@
                      <li class="nav-item">
                          <a data-scroll href="{{ route('design.index') }}" class="nav-link">Design Tshirt</a>
                      </li>
+                     <li class="nav-item">
+                        <a data-scroll href="{{ route('orders.index') }}" class="nav-link">Orders</a>
+                    </li>
                  @endauth
              </ul>
              <ul class="navbar-nav navbar-center">
@@ -69,7 +72,6 @@
                              <input type="password" name="password" required class="form-control"
                                  id="exampleInputPassword1" placeholder="Password">
                          </div>
-                         <a href="#" class="float-end text-muted font-size-15">Forgot Password.?</a>
                          <div class="custom-control custom-checkbox">
                              <input type="checkbox" class="custom-control-input" id="customCheck1">
                              <label class="custom-control-label font-size-15" for="customCheck1">Remember Me</label>
