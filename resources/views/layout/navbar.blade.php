@@ -61,7 +61,7 @@
                          <div class="form-group">
                              <label for="exampleInputUsername">Username</label>
                              <input type="text" name="name" required class="form-control"
-                                 id="exampleInputUsername" placeholder="Username">
+                                 id="exampleInputUsernameONE" placeholder="Username">
                          </div>
 
                          <div class="form-group">
@@ -101,7 +101,7 @@
                          <div class="form-group">
                              <label for="exampleInputUsername">User Name</label>
                              <input type="text" name="username" class="form-control" required
-                                 id="exampleInputUsername" placeholder="Enter Name">
+                                 id="exampleInputUsernameTWO" placeholder="Enter Name">
                          </div>
                          <div class="form-group">
                              <label for="exampleInputEmail2">Email</label>

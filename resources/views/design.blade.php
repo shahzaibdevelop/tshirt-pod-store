@@ -56,39 +56,39 @@
         }
 
 
-        .font1 {
+        .permanent-marker {
             font-family: "Permanent Marker", cursive;
             font-weight: 400;
             font-style: normal;
         }
 
-        .font2 {
+        .pacifico {
             font-family: "Pacifico", cursive;
             font-weight: 400;
             font-style: normal;
         }
 
-        .font3 {
+        .dancing-script {
             font-family: "Dancing Script", cursive;
             font-optical-sizing: auto;
             font-weight: 400;
             font-style: normal;
         }
 
-        .font4 {
+        .bebas-neue {
             font-family: "Bebas Neue", sans-serif;
             font-weight: 400;
             font-style: normal;
         }
 
-        .font5 {
+        .jaro {
             font-family: "Jaro", sans-serif;
             font-optical-sizing: auto;
             font-weight: 400;
             font-style: normal;
         }
 
-        .font6 {
+        .helvetica {
             font-family: 'Helvetica';
         }
 
@@ -238,19 +238,17 @@
                                 <label for="userText" class="mb-2">Select Text Font</label>
                                 <select onchange="changeTextFont()" id="selectTextFont" name="font_name" class="form-control">
                                     <option selected disabled>Select a Font</option>
-                                    <option value="Permanent Marker" class="font1">Permanent Marker</option>
-                                    <option value="Pacifico" class="font2">Pacifico</option>
-                                    <option value="Dancing Script" class="font3">Dancing Script</option>
-                                    <option value="Bebas Neue" class="font4">Bebas Neue</option>
-                                    <option value="Jaro" class="font5">Jaro
-
-                                    </option>
-                                    <option value="Helvetica" class="font6">Helvetica</option>
+                                    <option value="permanent-marker" class="permanent-marker">Permanent Marker</option>
+                                    <option value="pacifico" class="pacifico">Pacifico</option>
+                                    <option value="dancing-script" class="dancing-script">Dancing Script</option>
+                                    <option value="bebas-neue" class="bebas-neue">Bebas Neue</option>
+                                    <option value="jaro" class="jaro">Jaro</option>
+                                    <option value="helvetica" class="helvetica">Helvetica</option>
                                 </select>
                             </div>
                             <div class="col-md-4 ">
                                 <label for="userText" class="mb-2">Select Text Color</label>
-                                <input type="color" name="text_color" oninput="changeTextColor()" id="changeTextColor"
+                                <input type="color" name="text_color" oninput="changeInputTextColor()" id="changeTextColor"
                                     class="form-control">
                             </div>
                             <div class="col-md-4 ">
@@ -335,18 +333,7 @@
     <script src="{{ asset('plugins/bootstrap/script.js') }}"></script>
     <script src="{{ asset('plugins/interactjs/script.js') }}"></script>
     <script src="{{ asset('plugins/html2canvas/script.js') }}"></script>
-    <script>
-        function changeTextColor() {
-            var userTextElement = $('#userTextElement');
-            userTextElement.css('color', $('#changeTextColor').val());
-        }
-    </script>
-    <script>
-        function changeShirtColor() {
-            var userTextElement = $('#userTextElement');
-            userTextElement.css('color', $('#changeTextColor').val());
-        }
-    </script>
+   
     <script>
         function increaseFontSize() {
             var userTextElement = $('#userTextElement');
@@ -371,6 +358,12 @@
             $('#selectTextFont').addClass('form-control');
             $('#selectTextFont').addClass(selectedFont);
 
+        }
+    </script>
+     <script>
+        function changeInputTextColor() {
+            var userTextElement = $('#userTextElement');
+            userTextElement.css('color', $('#changeTextColor').val());
         }
     </script>
 
