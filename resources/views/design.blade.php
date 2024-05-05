@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrap/style.css') }}">
-    <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/style.css') }}">
     <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
@@ -19,7 +16,6 @@
             border-radius: 16px;
         }
 
-
         .design-container {
             position: relative;
             width: 300px;
@@ -29,13 +25,11 @@
             overflow: hidden;
         }
 
-
         .design-container img {
             width: 100%;
             height: auto;
             display: block;
         }
-
 
         #uploadedImage {
             position: absolute;
@@ -44,7 +38,6 @@
             transform: translate(-50%, -50%);
             cursor: move;
         }
-
 
         #userTextElement {
             position: absolute;
@@ -207,9 +200,7 @@
         }
     </style>
 
-
 </head>
-
 
 <body>
     @include('layout.navbar')
@@ -221,46 +212,50 @@
             <div class="row w-100 px-3">
                 <div class="col-md-4">
                     <img class="img img-fluid img-clickable" src="{{ asset('mockups/tshirt.png') }}" alt="">
-                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/tshirt.png') }}" alt="">
                 </div>
                 <div class="col-md-4">
                     <img class="img img-fluid img-clickable" src="{{ asset('mockups/long-sleeve-tshirt.png') }}"
                         alt="">
-                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/long-sleeve-tshirt.png') }}"
-                        alt="">
                 </div>
                 <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/hoodie.png') }}" alt="">
                     <img class="img img-fluid img-clickable" src="{{ asset('mockups/hoodie.png') }}" alt="">
                 </div>
             </div>
             <hr>
             {{-- Custom  --}}
             <div class="edit-shirt px-4">
+                <form action="{{route('save-design')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                 <div class="row w-100 pb-5 ">
                     <div class="col-md-6">
                         <label for="uploadInput">Upload Design</label>
-                        <input type="file" class="form-control mb-4 mt-2" name="userDesign" id="uploadInput">
-                        <input type="file" class="form-control mb-4 mt-2" name="userDesign" id="uploadInput">
+                        <input type="file" class="form-control mb-4 mt-2" required name="shirt_logo" id="uploadInput">
                         <label for="userText ">Write Text</label>
-                        <input type="text" class="form-control mt-2" id="userText"
+                        <input type="text" class="form-control mt-2" required name="shirt_text" id="userText"
                             placeholder="Enter your text here">
                         <div class="row mt-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="userText" class="mb-2">Select Text Font</label>
-                                <select onchange="changeTextFont()" id="selectTextFont" class="form-control">
+                                <select onchange="changeTextFont()" id="selectTextFont" name="font_name" class="form-control">
                                     <option selected disabled>Select a Font</option>
-                                    <option value="font1" class="font1">Demo Font</option>
-                                    <option value="font2" class="font2">Demo Font</option>
-                                    <option value="font3" class="font3">Demo Font</option>
-                                    <option value="font4" class="font4">Demo Font</option>
-                                    <option value="font5" class="font5">Demo Font</option>
-                                    <option value="font6" class="font6">Demo Font</option>
+                                    <option value="Permanent Marker" class="font1">Permanent Marker</option>
+                                    <option value="Pacifico" class="font2">Pacifico</option>
+                                    <option value="Dancing Script" class="font3">Dancing Script</option>
+                                    <option value="Bebas Neue" class="font4">Bebas Neue</option>
+                                    <option value="Jaro" class="font5">Jaro
+
+                                    </option>
+                                    <option value="Helvetica" class="font6">Helvetica</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 ">
+                            <div class="col-md-4 ">
                                 <label for="userText" class="mb-2">Select Text Color</label>
-                                <input type="color" oninput="changeTextColor()" id="changeTextColor"
+                                <input type="color" name="text_color" oninput="changeTextColor()" id="changeTextColor"
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-4 ">
+                                <label for="userShirt" class="mb-2">Select Shirt Color</label>
+                                <input type="color" name="shirt_color" oninput="changeShirtColor()" id="changeShirtColor"
                                     class="form-control">
                             </div>
                         </div>
@@ -272,48 +267,51 @@
                         <div class="d-flex">
                             <div class="radio-inputs d-flex flex-wrap">
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="Small">
                                         <span class="radio-tile px-4 py-2">
                                             <span class="radio-label">Small</span>
                                         </span>
                                 </label>
                                 <label>
-                                    <input checked="" class="radio-input" type="radio" name="size">
+                                    <input checked="" class="radio-input" type="radio" name="size" value="Medium">
                                     <span class="radio-tile px-4 py-2">
                                         <span class="radio-label">Medium</span>
                                     </span>
                                 </label>
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="Large">
                                     <span class="radio-tile px-4 py-2">
                                         <span class="radio-label">Large</span>
                                     </span>
                                 </label>
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="XL">
                                     <span class="radio-tile px-4 py-2">
                                         <span class="radio-label">XL</span>
                                     </span>
                                 </label>
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="XXL">
                                     <span class="radio-tile px-4 py-2">
                                         <span class="radio-label">XXL</span>
                                     </span>
                                 </label>
                                 <label>
-                                    <input class="radio-input" type="radio" name="size">
+                                    <input class="radio-input" type="radio" name="size" value="XXXL">
                                     <span class="radio-tile px-4 py-2">
-                                        <span class="radio-label">XXL</span>
+                                        <span class="radio-label">XXXL</span>
                                     </span>
                                 </label>
                         </div>
                         </div>
-                        <input type="file" id="finalDesign" hidden>
-                        <input type="text" class="form-control mt-2" id="userText"
-                            placeholder="Enter your text here">
-                        <img id="finalDesign" hidden>
-                        <button class="btn btn-primary mt-3" id="orderButton">Order Now</button>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" required type="checkbox" id="generateImageCheckbox">
+                            <label class="form-check-label" for="generateImageCheckbox">
+                                Design is Final?
+                            </label>
+                        </div>
+                        <input type="text" id="finalDesign" name="finalDesign" hidden>
+                        <button type="submit" class="btn btn-primary mt-3">Order Now</button>
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">
                         <div class="design-container w-100 h-100" id="designshirt">
@@ -323,6 +321,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     </section>
@@ -338,6 +337,12 @@
     <script src="{{ asset('plugins/html2canvas/script.js') }}"></script>
     <script>
         function changeTextColor() {
+            var userTextElement = $('#userTextElement');
+            userTextElement.css('color', $('#changeTextColor').val());
+        }
+    </script>
+    <script>
+        function changeShirtColor() {
             var userTextElement = $('#userTextElement');
             userTextElement.css('color', $('#changeTextColor').val());
         }
@@ -368,15 +373,6 @@
 
         }
     </script>
-    <script src="{{ asset('assets/js/smooth-scroll.polyfills.min.js') }}"></script>
-    <script src="{{ asset('assets/js/gumshoe.polyfills.min.js') }}"></script>
-    <script src="{{ asset('assets/js/feather.js') }}"></script>
-    <script src="{{ asset('assets/js/unicons.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('plugins/jquery/script.js') }}"></script>
-    <script src="{{ asset('plugins/bootstrap/script.js') }}"></script>
-    <script src="{{ asset('plugins/interactjs/script.js') }}"></script>
-    <script src="{{ asset('plugins/html2canvas/script.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -387,23 +383,38 @@
             });
         });
     </script>
-    <script>
+    {{-- <script>
         $('#orderButton').click(function() {
+            var node = document.getElementById('designshirt');
+            html2canvas(node).then(function(canvas) {
+                var imageData = canvas.toDataURL('image/png');
+                console.log(imageData);
+                $("#finalDesign").attr('value', imageData);
+            });
+        });
+    </script> --}}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#generateImageCheckbox').change(function() {
+            if(this.checked) {
+                generateImage();
+            }
+        });
+
+        function generateImage() {
             var node = document.getElementById('designshirt');
             html2canvas(node).then(function(canvas) {
                 var imageData = canvas.toDataURL('image/png');
                 $("#finalDesign").attr('value', imageData);
             });
-        });
-        $('#orderButton').click(function() {
-            var node = document.getElementById('designshirt');
-            html2canvas(node).then(function(canvas) {
-                var imageData = canvas.toDataURL('image/png');
-                $("#finalDesign").attr('src', imageData);
-            });
-        });
-    </script>
-    <script>
+        }
+    });
+</script>
+
+
+
     <script>
         document.getElementById('uploadInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
@@ -421,8 +432,6 @@
                     const containerHeight = document.querySelector('.design-container').clientHeight;
                     const newSize = Math.min(containerWidth, containerHeight) *
                         0.2; // 20% of the smaller dimension
-                    const newSize = Math.min(containerWidth, containerHeight) *
-                    0.2; // 20% of the smaller dimension
 
                     // Set uploaded image size
                     uploadedImg.style.width = newSize + 'px';
@@ -468,10 +477,6 @@
                 pos2 = 0,
                 pos3 = 0,
                 pos4 = 0;
-            let pos1 = 0,
-                pos2 = 0,
-                pos3 = 0,
-                pos4 = 0;
             element.onmousedown = dragMouseDown;
 
             function dragMouseDown(e) {
@@ -502,10 +507,6 @@
                 posY = 0,
                 initialX = 0,
                 initialY = 0;
-            let posX = 0,
-                posY = 0,
-                initialX = 0,
-                initialY = 0;
             element.addEventListener('touchstart', function(e) {
                 initialX = e.touches[0].clientX - posX;
                 initialY = e.touches[0].clientY - posY;
@@ -513,12 +514,6 @@
                     e.preventDefault();
                 }
             });
-                initialX = e.touches[0].clientX - posX;
-                initialY = e.touches[0].clientY - posY;
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-            });
 
             element.addEventListener('touchmove', function(e) {
                 posX = e.touches[0].clientX - initialX;
@@ -529,23 +524,7 @@
                     e.preventDefault();
                 }
             });
-            element.addEventListener('touchmove', function(e) {
-                posX = e.touches[0].clientX - initialX;
-                posY = e.touches[0].clientY - initialY;
-                element.style.top = posY + 'px';
-                element.style.left = posX + 'px';
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-            });
 
-            element.addEventListener('touchend', function(e) {
-                initialX = posX;
-                initialY = posY;
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-            });
             element.addEventListener('touchend', function(e) {
                 initialX = posX;
                 initialY = posY;
@@ -563,14 +542,7 @@
                     bottom: true,
                     top: true
                 },
-                edges: {
-                    left: true,
-                    right: true,
-                    bottom: true,
-                    top: true
-                },
                 listeners: {
-                    move: function(event) {
                     move: function(event) {
                         let target = event.target;
                         target.style.width = event.rect.width + 'px';
@@ -580,15 +552,6 @@
             });
         }
     </script>
-    {{-- @if (request()->has('modal') && request()->get('modal') == 'open')
-        <script>
-            $(document).ready(function() {
-                $('#exampleModalCenter').modal('show');
-            });
-        </script>
-    @endif --}}
 </body>
 
-
 </html>
-
