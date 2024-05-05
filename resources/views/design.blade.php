@@ -8,6 +8,8 @@
     <title>Design</title>
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/style.css') }}">
     <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{asset('assets/style/app.css')}}">
+    <link href="{{asset('assets/css/materialdesignicons.min.css')}}" rel="stylesheet" type="text/css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400..700&family=Jaro:opsz@6..72&family=Pacifico&family=Permanent+Marker&display=swap');
 
@@ -203,6 +205,7 @@
 </head>
 
 <body>
+    @include('layout.extras')
     @include('layout.navbar')
     <section class="design py-5">
         <div class="content vh-100 ">

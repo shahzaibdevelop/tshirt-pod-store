@@ -2,9 +2,10 @@
  <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark" id="navbar">
      <div class="container">
          <!-- LOGO -->
-         <a class="navbar-brand logo" href="layout-one-1.html">
-             <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" class="logo-dark" height="24" />
-             <img src="{{ asset('assets/images/logo-light.png') }}" alt="" class="logo-light" height="24" />
+         <a class="navbar-brand logo" href="{{route('index')}}">
+            <h3 class="bg-dark text-white px-3 py-1 rounded-3">Vibrant Tees</h3>
+             {{-- <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" class="logo-dark" height="24" />
+             <img src="{{ asset('assets/images/logo-light.png') }}" alt="" class="logo-light" height="24" /> --}}
          </a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
              aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +35,7 @@
                 @auth
                     <li class="nav-item">
                        
-                            <a href="{{route('logout')}}" class="btn btn-link">Logout</a>
+                            <a href="{{route('logout')}}" class="btn btn-link nav-link">Logout</a>
                     </li>
                 @else
                     <li class="nav-item">

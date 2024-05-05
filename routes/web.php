@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\CustomAuth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\AdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,13 @@ Route::middleware([CustomAuth::class])->group(function () {
     Route::post('/save-design', [HomeController::class, 'storeDesign'])->name('save-design');
     Route::get('/orders',[HomeController::class, 'orders'])->name('orders.index');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+
+Route::get('/admin/login',[AdminController::class,'loginPage'])->name('admin.loginPage');
+Route::post('/admin/login',[AdminController::class,'login'])->name('admin.login');
+Route::middleware([AdminMiddleware::class])->group(function(){
+    Route::get('/admin/orders',[AdminController::class,'adminOrders'])->name('admin.index');
+    Route::post('/admin/change-status',[AdminController::class, 'changeStatus'])->name('admin.changeStatus');
+    Route::get('admin/logout',[AdminController::class, 'logout'])->name('admin.logout');
 });

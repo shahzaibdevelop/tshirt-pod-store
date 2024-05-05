@@ -10,9 +10,13 @@
     <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css">
+
+    <link rel="stylesheet" href="{{asset('assets/style/app.css')}}">
+    <link href="{{asset('assets/css/materialdesignicons.min.css')}}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
+    @include('layout.extras')
     @include('layout.navbar')
     <section class="design py-5">
         <div class="content vh-100 ">
@@ -43,23 +47,25 @@
                                 <td>{{ $order->phone }}</td>
                                 <td>{{ $order->address }}</td>
                                 <td>{{ $order->shirt_size }}</td>
-                                <td>{{ $order->shirt_text ?? "Not Added" }}</td>
-                                <td>{{ $order->text_font ?? "Not Added" }}</td>
+                                <td>{{ $order->shirt_text ?? 'Not Added' }}</td>
+                                <td>{{ $order->text_font ?? 'Not Added' }}</td>
                                 <td>{{ $order->text_color }}</td>
                                 <td>{{ $order->shirt_color }}</td>
                                 <td>
                                     @if ($order->shirt_logo)
-                                    <a href="{{ asset('shirt-logo/') . '/' . $order->shirt_logo }}" target="_blank">
-                                        <img width="50" height="50"
-                                            src="{{ asset('shirt-logo/') . '/' . $order->shirt_logo }}"
-                                            class="img img-fluid">
-                                    </a>
+                                        <a href="{{ asset('shirt-logo/') . '/' . $order->shirt_logo }}"
+                                            target="_blank">
+                                            <img width="50" height="50"
+                                                src="{{ asset('shirt-logo/') . '/' . $order->shirt_logo }}"
+                                                class="img img-fluid">
+                                        </a>
                                     @else
-                                    <span>Not Added</span>
+                                        <span>Not Added</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ asset('shirt-design/') . '/' . $order->final_design }}" target="_blank">
+                                    <a href="{{ asset('shirt-design/') . '/' . $order->final_design }}"
+                                        target="_blank">
                                         <img width="50" height="50"
                                             src="{{ asset('shirt-design/') . '/' . $order->final_design }}"
                                             class="img img-fluid">
@@ -67,11 +73,13 @@
                                 </td>
                                 <td>
                                     @if ($order->status == 0)
-                                        <span class="text-primary badge">Ordered</span>
+                                        <span class="text-primary badge">Pending</span>
                                     @elseif ($order->status == 1)
                                         <span class="text-warning badge">Shipping</span>
                                     @elseif ($order->status == 2)
                                         <span class="text-success badge">Delivered</span>
+                                    @elseif ($order->status == 3)
+                                        <span class="text-danger badge">Canceled</span>
                                     @endif
                                 </td>
                             </tr>
@@ -94,7 +102,7 @@
     <script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.js"></script>
     <script>
         $("#example").DataTable({
-            "ordering":false
+            "ordering": false
         });
     </script>
 </body>
