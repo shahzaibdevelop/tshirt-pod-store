@@ -27,14 +27,8 @@
                 <table id="example" class="table " style="width:100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Address</th>
                             <th>Size</th>
                             <th>Text</th>
-                            <th>Text Font</th>
-                            <th>Text Color</th>
-                            <th>Shirt Color</th>
                             <th>Logo</th>
                             <th>Final Design</th>
                             <th>Status</th>
@@ -43,14 +37,8 @@
                     <tbody>
                         @foreach ($orders as $order)
                             <tr>
-                                <td>{{ $order->name }}</td>
-                                <td>{{ $order->phone }}</td>
-                                <td>{{ $order->address }}</td>
                                 <td>{{ $order->shirt_size }}</td>
                                 <td>{{ $order->shirt_text ?? 'Not Added' }}</td>
-                                <td>{{ $order->text_font ?? 'Not Added' }}</td>
-                                <td>{{ $order->text_color }}</td>
-                                <td>{{ $order->shirt_color }}</td>
                                 <td>
                                     @if ($order->shirt_logo)
                                         <a href="{{ asset('shirt-logo/') . '/' . $order->shirt_logo }}"
