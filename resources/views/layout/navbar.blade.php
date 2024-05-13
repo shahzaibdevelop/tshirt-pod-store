@@ -22,10 +22,13 @@
                  <li class="nav-item">
                      <a data-scroll href="{{ route('contact.index') }}" class="nav-link">Contact</a>
                  </li>
+                 <li class="nav-item">
+                     <a data-scroll href="{{ route('catalog.index') }}" class="nav-link">Catalog</a>
+                 </li>
+                 <li class="nav-item">
+                    <a data-scroll href="{{ route('collections.index') }}" class="nav-link">Collections</a>
+                </li>
                  @auth
-                     <li class="nav-item">
-                         <a data-scroll href="{{ route('design.index') }}" class="nav-link">Design Tshirt</a>
-                     </li>
                      <li class="nav-item">
                         <a data-scroll href="{{ route('orders.index') }}" class="nav-link">Orders</a>
                     </li>

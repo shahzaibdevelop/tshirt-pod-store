@@ -18,10 +18,10 @@
 <body>
     @include('layout.extras')
     @include('layout.navbar')
-    <section class="design py-5">
+    <section class="design py-5 mx-5">
         <div class="content vh-100 ">
             <div class="d-flex justify-content-center py-5">
-                <h3>Your Orders </h3>
+                <h3 class="title fw-bold">Your Orders </h3>
             </div>
             <div class="row w-100 px-5">
                 <table id="example" class="table " style="width:100%">
@@ -37,7 +37,7 @@
                     <tbody>
                         @foreach ($orders as $order)
                             <tr>
-                                <td>{{ $order->shirt_size }}</td>
+                                <td>{{ $order->shirt_size ?? 'Not Added'}}</td>
                                 <td>{{ $order->shirt_text ?? 'Not Added' }}</td>
                                 <td>
                                     @if ($order->shirt_logo)
@@ -52,12 +52,21 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if (strpos($order->final_design,'catalog/') !== false)
+                                    <a href="{{ \Illuminate\Support\Facades\Url::to('/') . '/'. $order->final_design }}"
+                                        target="_blank">
+                                        <img width="50" height="50"
+                                            src="{{ \Illuminate\Support\Facades\Url::to('/') . '/'. $order->final_design }}"
+                                            class="img img-fluid">
+                                    </a>
+                                    @else
                                     <a href="{{ asset('shirt-design/') . '/' . $order->final_design }}"
                                         target="_blank">
                                         <img width="50" height="50"
                                             src="{{ asset('shirt-design/') . '/' . $order->final_design }}"
                                             class="img img-fluid">
                                     </a>
+                                    @endif
                                 </td>
                                 <td>
                                     @if ($order->status == 0)

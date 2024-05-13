@@ -208,24 +208,11 @@
     @include('layout.extras')
     @include('layout.navbar')
     <section class="design py-5">
-        <div class="content vh-100 ">
+        <div class="content vh-100 mx-5 px-3">
             <div class="d-flex justify-content-center py-5">
                 <h3>Customize your merch </h3>
             </div>
-            <div class="row w-100 px-3">
-                <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/tshirt.png') }}" alt="">
-                </div>
-                <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/long-sleeve-tshirt.png') }}"
-                        alt="">
-                </div>
-                <div class="col-md-4">
-                    <img class="img img-fluid img-clickable" src="{{ asset('mockups/hoodie.png') }}" alt="">
-                </div>
-            </div>
             <hr>
-            {{-- Custom  --}}
             <div class="edit-shirt px-4">
                 <form action="{{route('save-design')}}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -320,7 +307,7 @@
                                 <input type="text" required name="phone" class="form-control" placeholder="Enter Phone Number">
                             </div>
                         </div>
-                        <div class="rownmt-3">
+                        <div class="row mt-3">
                             <div class="col-12">
                                 <textarea name="address" required class="form-control" placeholder="Enter Address" cols="30" rows="4"></textarea>
                             </div>
@@ -349,7 +336,13 @@
     <script src="{{ asset('plugins/bootstrap/script.js') }}"></script>
     <script src="{{ asset('plugins/interactjs/script.js') }}"></script>
     <script src="{{ asset('plugins/html2canvas/script.js') }}"></script>
-   
+    <script>
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(currentUrl.split('?')[1]);
+        var mockupValue = atob(urlParams.get('mockup'));
+        $("#mockupImage").attr('src',mockupValue)
+
+    </script>
     <script>
         function increaseFontSize() {
             var userTextElement = $('#userTextElement');
@@ -382,28 +375,6 @@
             userTextElement.css('color', $('#changeTextColor').val());
         }
     </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.img-clickable').click(function() {
-                $('.img-clickable').removeClass('border-blue');
-                $(this).addClass('border-blue');
-                $('#mockupImage').attr('src', $(this).attr('src'));
-            });
-        });
-    </script>
-    {{-- <script>
-        $('#orderButton').click(function() {
-            var node = document.getElementById('designshirt');
-            html2canvas(node).then(function(canvas) {
-                var imageData = canvas.toDataURL('image/png');
-                console.log(imageData);
-                $("#finalDesign").attr('value', imageData);
-            });
-        });
-    </script> --}}
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#generateImageCheckbox').change(function() {

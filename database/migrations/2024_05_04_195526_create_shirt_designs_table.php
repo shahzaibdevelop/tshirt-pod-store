@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('shirt_text')->nullable();
             $table->string('text_font')->nullable();
             $table->string('text_color')->nullable();
-            $table->string('shirt_color');
-            $table->string('shirt_size');
+            $table->string('shirt_color')->nullable();
+            $table->string('shirt_size')->nullable();
             $table->string('final_design');
             $table->string('name');
             $table->string('address');

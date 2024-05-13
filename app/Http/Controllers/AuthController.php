@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             notyf()->addSuccess('Login successful');
-            return redirect()->route('design.index');
+            return redirect()->route('catalog.index');
         } else {
             notyf()
                 ->duration(2000) 

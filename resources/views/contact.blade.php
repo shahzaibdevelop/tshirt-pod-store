@@ -69,4 +69,6 @@
     </div>
 </section>
 <!-- Contact Us End -->
+@include('layout.footer')
+
 @endsection

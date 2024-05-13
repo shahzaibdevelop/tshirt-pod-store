@@ -22,6 +22,7 @@ class CustomAuth
             return $next($request);
         }
         else{
+            notyf()->addError('Please login first !');
             return redirect()->route('index');
         }
     }

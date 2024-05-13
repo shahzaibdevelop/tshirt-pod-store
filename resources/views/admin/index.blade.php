@@ -28,7 +28,7 @@
         <section class="design py-5">
             <div class="content vh-100 ">
                 <div class="d-flex justify-content-center py-5">
-                    <h3>All Orders </h3>
+                    <h3 class="fw-bold">All Orders </h3>
                 </div>
                 <div class="row w-100 px-5">
                     <table id="example" class="table " style="width:100%">
@@ -57,11 +57,11 @@
                                     <td>{{ $order->name }}</td>
                                     <td>{{ $order->phone }}</td>
                                     <td>{{ $order->address }}</td>
-                                    <td>{{ $order->shirt_size }}</td>
+                                    <td>{{ $order->shirt_size ?? "Not Added"}}</td>
                                     <td>{{ $order->shirt_text ?? "Not Added" }}</td>
                                     <td>{{ $order->text_font ?? "Not Added" }}</td>
-                                    <td>{{ $order->text_color }}</td>
-                                    <td>{{ $order->shirt_color }}</td>
+                                    <td>{{ $order->text_color ?? "Not Added"}}</td>
+                                    <td>{{ $order->shirt_color ?? "Not Added"}}</td>
                                     <td>
                                         @if ($order->shirt_logo)
                                         <a href="{{ asset('shirt-logo/') . '/' . $order->shirt_logo }}" target="_blank">
@@ -74,11 +74,21 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ asset('shirt-design/') . '/' . $order->final_design }}" target="_blank">
+                                        @if (strpos($order->final_design,'catalog/') !== false)
+                                        <a href="{{ \Illuminate\Support\Facades\Url::to('/') . '/'. $order->final_design }}"
+                                            target="_blank">
+                                            <img width="50" height="50"
+                                                src="{{ \Illuminate\Support\Facades\Url::to('/') . '/'. $order->final_design }}"
+                                                class="img img-fluid">
+                                        </a>
+                                        @else
+                                        <a href="{{ asset('shirt-design/') . '/' . $order->final_design }}"
+                                            target="_blank">
                                             <img width="50" height="50"
                                                 src="{{ asset('shirt-design/') . '/' . $order->final_design }}"
                                                 class="img img-fluid">
                                         </a>
+                                        @endif
                                     </td>
                                     <td>
                                         <form id="changeStatusForm" action="{{route('admin.changeStatus')}}" method="POST">

@@ -22,10 +22,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('alert', [HomeController::class, 'alert'])->name('alert');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact.index');
-
-
-
+Route::get('/catalogs', [HomeController::class, 'catalog'])->name('catalog.index');
+Route::get('collections',[HomeController::class, 'collections'])->name('collections.index');
 Route::middleware([CustomAuth::class])->group(function () {
+    Route::post('checkout',[HomeController::class,'checkoutSave'])->name('checkout.save');
+    Route::get('checkout',[HomeController::class,'checkout'])->name('checkout.index');
     Route::get('/design', [HomeController::class, 'design'])->name('design.index');
     Route::post('/save-design', [HomeController::class, 'storeDesign'])->name('save-design');
     Route::get('/orders',[HomeController::class, 'orders'])->name('orders.index');

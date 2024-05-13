@@ -121,5 +121,7 @@
     </div>
 </section>
 <!-- Features End -->
+@include('layout.footer')
+
 @endsection
 
