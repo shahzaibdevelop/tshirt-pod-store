@@ -20,10 +20,15 @@
                         <textarea name="address" required class="form-control" placeholder="Enter Address" cols="30" rows="4"></textarea>
                     </div>
                 </div>
+                <hr>
+                <div class="d-flex justify-content-end">
+                    <span class="title fw-bold fs-5">Total : {{$price}}</span>
+                    <input type="text" name="price" hidden value="{{$price}}">
+                </div>
                 <button class="my-3 btn btn-primary" type="submit" >Order</button>
             </form>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 d-flex flex-column gap-3">
             <img src="{{$product}}" class="img img-fluid">
         </div>
     </div>

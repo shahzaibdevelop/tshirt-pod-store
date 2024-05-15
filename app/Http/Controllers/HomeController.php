@@ -17,9 +17,10 @@ class HomeController extends Controller
     {
         return view('contact');
     }
-    public function design()
+    public function design(Request $request)
     {
-        return view('design');
+        $price = base64_decode($request->price);
+        return view('design',get_defined_vars());
     }
     public function alert()
     {
@@ -44,6 +45,7 @@ class HomeController extends Controller
         $store->text_color = $request->text_color;
         $store->shirt_color = $request->shirt_color;
         $store->shirt_size = $request->size;
+        $store->price = $request->price;
         if ($request->has('finalDesign')) {
             $base64_image = $request->input('finalDesign');
             $extension = explode('/', explode(':', substr($base64_image, 0, strpos($base64_image, ';')))[1])[1];
@@ -71,6 +73,8 @@ class HomeController extends Controller
     }
     public function checkout(Request $request){
         $product = base64_decode( $request->product);
+        $title = base64_decode( $request->title);
+        $price = base64_decode( $request->price);
         return view('checkout',get_defined_vars());
     }
     public function checkoutSave(Request $request){
@@ -84,8 +88,9 @@ class HomeController extends Controller
         $shirtDesign->phone = $request->phone;
         $shirtDesign->address = $request->address;
         $shirtDesign->final_design = $trimmedUrl;
-        $shirtDesign->save();
+        $shirtDesign->price = $request->price;
         try {
+            $shirtDesign->save();
             notyf()->addSuccess('Order placed successfully');
             return redirect()->route('catalog.index');
         } catch (\Throwable $th) {

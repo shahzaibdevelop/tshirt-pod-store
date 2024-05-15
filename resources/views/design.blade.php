@@ -223,6 +223,7 @@
                         <label for="userText ">Write Text</label>
                         <input type="text" class="form-control mt-2"  name="shirt_text" id="userText"
                             placeholder="Enter your text here">
+                            <input hidden type="text" name="price" value="{{$price}}">
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <label for="userText" class="mb-2">Select Text Font</label>
@@ -311,6 +312,10 @@
                             <div class="col-12">
                                 <textarea name="address" required class="form-control" placeholder="Enter Address" cols="30" rows="4"></textarea>
                             </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-end">
+                            <span class="fs-5 fw-bold title">Total : {{$price}}</span>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Order Now</button>
                     </div>

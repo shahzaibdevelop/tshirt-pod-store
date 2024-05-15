@@ -30,7 +30,7 @@
                 <div class="d-flex justify-content-center py-5">
                     <h3 class="fw-bold">All Orders </h3>
                 </div>
-                <div class="row w-100 px-5">
+                <div class="row w-100 px-5 table-responsive">
                     <table id="example" class="table " style="width:100%">
                         <thead>
                             <tr>
@@ -46,6 +46,7 @@
                                 <th>Shirt Color</th>
                                 <th>Logo</th>
                                 <th>Final Design</th>
+                                <th>Price</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -90,6 +91,7 @@
                                         </a>
                                         @endif
                                     </td>
+                                    <td>{{$order->price}}</td>
                                     <td>
                                         <form id="changeStatusForm" action="{{route('admin.changeStatus')}}" method="POST">
                                             @csrf

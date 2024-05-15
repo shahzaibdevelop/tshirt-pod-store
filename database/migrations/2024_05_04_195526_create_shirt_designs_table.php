@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('phone');
+            $table->string('price');
             $table->integer('status')->comment('0=Ordered,1=Shipping,2=Delivered,3=Cancelled')->default(0);
             $table->timestamps();
         });

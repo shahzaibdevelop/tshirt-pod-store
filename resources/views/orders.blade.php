@@ -31,6 +31,7 @@
                             <th>Text</th>
                             <th>Logo</th>
                             <th>Final Design</th>
+                            <th>Price</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -68,6 +69,7 @@
                                     </a>
                                     @endif
                                 </td>
+                                <td>{{$order->price ?? '--'}}</td>
                                 <td>
                                     @if ($order->status == 0)
                                         <span class="text-primary badge">Pending</span>
